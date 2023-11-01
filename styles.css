@@ -1,0 +1,167 @@
+/* Global Styles */
+* {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+}
+
+body {
+  font-family: "Inter", sans-serif;
+  background-color: #f4f8fa;
+  color: #333333;
+  padding-top: 100px; /* Adjusted space for the fixed header */
+}
+
+/* Layout */
+.container {
+  max-width: 1200px;
+  margin: auto;
+  padding: 0 20px;
+}
+
+/* Header Styles */
+header {
+  background: #5bc0eb;
+  color: #fff;
+  padding: 20px 0;
+  text-align: center;
+  position: fixed; /* Header will stay fixed at the top */
+  width: 100%;
+  top: 0;
+  z-index: 1000;
+  display: flex; /* Use flex to align content horizontally */
+  justify-content: space-between; /* Space items evenly along the header */
+  align-items: center; /* Center items vertically */
+}
+
+header .logo {
+  text-align: center;
+  font-size: 36px;
+  font-weight: bold;
+  padding: 5px 0;
+}
+
+header nav ul {
+  list-style: none;
+  display: flex;
+  justify-content: space-around;
+  align-items: center; /* Center items vertically */
+  height: 100%; /* Full height of the header */
+  margin: 0; /* Removed padding */
+  padding: 0; /* Removed padding */
+}
+
+header nav ul li a {
+  text-decoration: none;
+  color: #fff;
+  font-size: 18px;
+  padding: 8px 16px;
+  transition: background-color 0.3s;
+}
+
+header nav ul li a:hover {
+  color: #333;
+  background-color: #0088d6;
+  border-radius: 4px;
+}
+
+/* Main Content Styles */
+main {
+  padding: 20px 0;
+  text-align: center;
+}
+
+h1,
+h2,
+h3 {
+  color: #333333;
+  padding: 20px;
+}
+
+/* Button Styles */
+.button {
+  display: inline-block;
+  font-size: 18px;
+  color: #fff;
+  background: #5bc0eb;
+  padding: 10px 20px;
+  text-decoration: none;
+  border-radius: 5px;
+  transition: background-color 0.3s ease;
+}
+
+.button:hover {
+  background: #9bc53d;
+}
+
+/* Footer Styles */
+footer {
+  background-color: #333;
+  color: #fff;
+  text-align: center;
+  padding: 20px 0; /* Added spacing at the top and bottom */
+  margin-top: 20px; /* Added margin at the top */
+}
+
+footer p {
+  margin: 10px 0;
+}
+
+footer ul {
+  list-style-type: none;
+  padding: 0;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+footer ul li {
+  display: inline;
+  margin: 0 15px;
+}
+
+footer ul li a {
+  text-decoration: none;
+  color: #5bc0eb;
+}
+
+footer ul li a:hover {
+  text-decoration: underline;
+}
+
+/*sign up forms*/
+.form-group {
+  margin-bottom: 15px;
+}
+
+input[type="text"],
+input[type="email"],
+input[type="password"] {
+  width: 100%;
+  padding: 10px;
+  margin-top: 5px;
+  border: 1px solid #ccc;
+  border-radius: 4px;
+  font-size: 16px;
+}
+
+button {
+  background-color: #5bc0eb;
+  color: #fff;
+  cursor: pointer;
+  transition: background-color 0.3s ease;
+}
+
+button:hover {
+  background-color: #4ca8d8;
+}
+
+.form-buttons {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.form-buttons button {
+  width: 48%; /* Adjusted width to have two buttons side by side with some space */
+}
