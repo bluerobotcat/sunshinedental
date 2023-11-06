@@ -3,97 +3,307 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Sunshine Dental Clinic</title>
-    <link rel="stylesheet" href="styles.css">
+  <title>Sunshine Dental Clinic</title>
+  <link rel="stylesheet" href="styles.css">
+  <link href="https://fonts.googleapis.com/css?family=Poppins:100,200,300,400,600,700&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css">
+<style>
+  
+/* Introduction */
+.introduction {
+  margin-top: 3%; /* Add top margin to create space after the header */
+  text-align: center;
+  background: #f4f8fa;
+  padding: 0;
+  position: relative;
+}
+
+.introduction img {
+  max-width: 80%;
+  height: auto;
+  padding-top: 0px;
+  margin: 0 auto;
+  display: block;
+  border-radius: 20px;
+}
+
+.introduction .text-box {
+  text-align: center;
+  background: rgba(255, 255, 255, 0.8);
+  width:75%;
+  max-width: 600px;
+  height: auto;
+  position: absolute;
+  bottom: 0; /* Align to the bottom of .introduction */
+  left: 50%;
+  padding: 5px;
+  transform: translateX(-50%);
+  border-radius: 10px;
+}
+
+.introduction h1 {
+  font-size: 28px;
+  color: #333;
+  margin: 5px 0;
+}
+
+.introduction p {
+  font-size: 18px;
+  color: #333;
+  margin: 0;
+  border-radius: 10px;
+  padding: 5px;
+}
+
+/* Services */
+.service {
+  width: 80%;
+  margin: auto;
+  text-align: center;
+  padding-top: 50px;
+}
+
+.service h1 {
+  font-size: 28px;
+  font-weight: 600;
+  padding: 0px;
+}
+
+.service p {
+  color: #777;
+  font-size: 20px;
+  font-weight: 300;
+  line-height: 22px;
+  padding: 5px;
+}
+
+.row {
+  margin-top: 5%;
+  display: flex;
+  justify-content: space-between;
+}
+
+.service-col {
+  flex-basis: 31%;
+  background: #f3fffc;
+  border-radius: 10px;
+  margin-bottom: 5%;
+  padding: 20px 12px;
+  box-sizing: border-box;
+  transition: 0.5s;
+}
+
+.service-col h3 {
+  text-align: center;
+  font-weight: 600;
+  margin: 10px 0;
+}
+
+.service-col:hover {
+  box-shadow: 0 0 20px 0px rgba(0, 0, 0, 0.2);
+}
+
+@media (max-width: 700px) {
+  .row {
+    flex-direction: column;
+  }
+}
+
+/* Dentists */
+.dentist {
+  width: 80%;
+  margin: auto;
+  text-align: center;
+  padding-top: 50px;
+}
+
+.dentist-col {
+  flex-basis: 31%;
+  border-radius: 10px;
+  margin-bottom: 5%;
+  text-align: left;
+}
+
+.dentist-col img {
+  width: 100%;
+  border-radius: 10px;
+}
+
+.dentist-col p {
+  padding: 0;
+}
+
+.dentist-col h3 {
+  margin-top: 16px;
+  margin-bottom: 15px;
+  text-align: left;
+}
+
+/* Testimonials */
+.testimonials {
+  width: 80%;
+  margin: auto;
+  padding-top: 50px;
+  text-align: center;
+}
+
+.testimonial-col {
+  flex-basis: 44%;
+  border-radius: 10px;
+  margin-bottom: 5%;
+  text-align: left;
+  background: #f3fffc;
+  padding: 25px;
+  cursor: pointer;
+  display: flex;
+}
+
+.testimonial-col img {
+  height: 40px;
+  margin-left: 5px;
+  margin-right: 30px;
+  border-radius: 50%;
+}
+
+.testimonial-col p {
+  padding: 0;
+}
+
+.testimonial-col h3 {
+  margin-top: 15px;
+  text-align: left;
+}
+
+.testimonial-col .fa {
+  color:#5bc0eb;
+}
+
+</style>
 </head>
 <body>
   <header>
     <div class="container">
-        <div class="logo">Sunshine Dental Clinic</div>
-            <nav>
-                <ul>
-                    <li><a href="index.html">Home</a></li>
-                    <li><a href="services.html">Services</a></li>
-                    <li><a href="dentists.html">Dentists</a></li>
-                    <li><a href="aboutus.html">About Us</a></li>
-                    <li><a href="contactus.html">Contact Us</a></li>
-                    <li><a href="login.html">Login</a></li>
-                </ul>
-            </nav>
-         </div>
+      <div class="logo">Sunshine Dental Clinic</div>
+      <nav>
+        <ul>
+          <li><a href="index.html">Home</a></li>
+          <li><a href="services.html">Services</a></li>
+          <li><a href="dentists.html">Dentists</a></li>
+          <li><a href="aboutus.html">About Us</a></li>
+          <li><a href="contactus.html">Contact Us</a></li>
+          <li><a href="login.html">Login</a></li>
+        </ul>
+      </nav>
     </div>
-</header>
+  </header>
 
   <main class="container">
-      <!-- Introduction Section -->
-        <section id="introduction">
-            <h1>Welcome to Sunshine Dental Clinic</h1>
-            <p>Your smile is our priority. Experience comprehensive dental care with our professional team.</p>
-        </section>
-      <!-- Services Provided Section -->
-        <section id="services-provided" class="section-background">
-            <h2 class="section-heading">Services Provided</h2>
-            <div>
-                <img src="path_to_your_image.jpg" alt="Service Image">
-                <!-- Repeat the above line for each image -->
-            </div>
-             <a href="services.html">
-              <button class="button">See More...</button>
-            </a>
-        </section>
-
-    <!-- In House Dentists Section -->
-    <section id="in-house-dentists" class="section-background">
-      <h2 class="section-heading">In House Dentists</h2>
-      <div class="dentist-images">
-        <!-- Include your image tags here -->
-        <img src="path_to_your_image.jpg" alt="Dentist Image" />
-        <!-- Repeat the above line for each image -->
-      </div>   
-        <a href="dentists.html">
-          <button class="button">See More...</button>
-        </a>
+    <!-- Introduction Section -->
+    <section class="introduction">
+      <div class="text-box">
+        <h1>Welcome to Sunshine Dental Clinic</h1>
+        <p>Your smile is our priority.<br><br>Experience comprehensive dental care with our professional team.</p>
+      </div>
+      <img src="images/smile.jpg">
+    </section>
     
 
+    <!-- Services Provided Section -->
+    <section class="service">
+      <h1>Services We Offer</h1>
+      <p>Since we strongly believe that ‘Precision is the Key to Quality Dental Work’, our dental clinic uses evidence-based techniques, the most advanced equipment, and technology available to ensure that our patients receive dental care with the highest clinical standards.</p>
+      <div class="row">
+        <div class="service-col">
+          <h3>Dental Surgery</h3>
+          <p>We are experienced in all types of dental surgery, including wisdom tooth extraction, root canals, crowns, bridges, and dental implants.</p>
+        </div>
+        <div class="service-col">
+          <h3>Orthodontics</h3>
+          <p>Orthodontic treatment can help correct improperly aligned, crowded, unevenly spaced, protruding, and extra or missing teeth, misaligned jaws, and bite problems. We also specialize in Invisalign.</p>
+        </div>
+        <div class="service-col">
+          <h3>Routine Exams</h3>
+          <p>From scaling and polishing to dental fillings and teeth whitening, we ensure your teeth are in top shape for everyday life.</p>
+        </div>
+      </div>
+      <a href="services.html">
+        <button class="button">See More Services</button>
+      </a>
+    </section>
+
+    <!-- In House Dentists Section -->
+    <section class="dentist">
+      <h1>Our In-House Dentists</h1>
+      <p>We present you our competent and qualified dentists who can provide the best services for your oral hygiene.</p>
+      <div class="row">
+        <div class="dentist-col">
+          <img src="images/doctor-1.png">
+          <h3>Dr. Darren Doe</h3>
+          <p>Dr. Darren has 20 years of experience in Dental Implant Fixing and Impacted Tooth Extraction.</p>
+        </div>
+        <div class="dentist-col">
+          <img src="images/doctor-2.png">
+          <h3>Dr. Julian</h3>
+          <p>Dr. Julian is a specialist in Invisalign braces, Veneers/Laminates, and Orthodontics.</p>
+        </div>
+        <div class="dentist-col">
+          <img src="images/doctor-3.png">
+          <h3>Dr. William Holmes</h3>
+          <p>Dr. William is one of the specialists in Routine Exams, such as Scaling & Polishing.</p>
+        </div>
+      </div>
+      <a href="dentists.html">
+        <button class="button">See More Dentists</button>
+      </a>
     </section>
 
     <!-- Reviews Section -->
-    <section id="reviews" class="section-background"></section>
-      <h2 class="section-heading">Reviews</h2>
-      <!-- You can repeat this part for each review -->
-      <div class="review">
-        <div class="stars">
-          <!-- Include star icons here -->
+    <section class="testimonials">
+      <h1>What Our Customers Say</h1>
+      <div class="row">
+        <div class="testimonial-col">
+          <img src="images/mark.jpg">
+          <div>
+            <p>“Excellent dentist. I have come here twice. Once for root canal work. Both times happy with professionalism and long-term results.”</p>
+            <h3>Mark Tay</h3>
+            <i class="fa fa-star"></i>
+            <i class="fa fa-star"></i>
+            <i class="fa fa-star"></i>
+            <i class="fa fa-star"></i>
+            <i class="fa fa-star-o"></i>
+          </div>
         </div>
-        <p>
-          Lorem ipsum dolor sit amet, consectetur adipiscing elit. Maecenas eu
-          quam ut eros euismod pellentesque a sit amet nulla.
-        </p>
-        <h3>Patient A</h3>
+        <div class="testimonial-col">
+          <img src="images/grace.jpg">
+          <div>
+            <p>“It is always a pleasant experience coming here. The staff is always so courteous, professional, and patient.”</p>
+            <h3>Grace Ng</h3>
+            <i class="fa fa-star"></i>
+            <i class="fa fa-star"></i>
+            <i class="fa fa-star"></i>
+            <i class="fa fa-star"></i>
+            <i class="fa fa-star-half-o"></i>
+          </div>
+        </div>
       </div>
     </section>
-
-    <div>
-      <a href="dashboard.html">
-        <button class="button">See More...</button>
-      </a>
-    </div>
   </main>
-    <!-- Footer -->
-    <footer>
-      <div class="container">
-        <nav>
-          <ul>
-            <li><a href="index.html">Home</a></li>
-            <li><a href="services.html">Services</a></li>
-            <li><a href="dentists.html">Dentists</a></li>
-            <li><a href="aboutus.html">About Us</a></li>
-            <li><a href="contactus.html">Contact Us</a></li>
-            <li><a href="login.html">Login</a></li>
-          </ul>
-        </nav>
+
+  <!-- Footer -->
+  <footer>
+    <div class="container">
+      <nav>
+        <ul>
+          <li><a href="index.html">Home</a></li>
+          <li><a href="services.html">Services</a></li>
+          <li><a href="dentists.html">Dentists</a></li>
+          <li><a href="aboutus.html">About Us</a></li>
+          <li><a href="contactus.html">Contact Us</a></li>
+          <li><a href="login.html">Login</a></li>
+        </ul>
+      </nav>
       <p>&copy; 2023 Sunshine Dental Clinic. All rights reserved.</p>
-      </div>
-    </footer>
-  </body>
+    </div>
+  </footer>
+</body>
 </html>

@@ -1,49 +1,159 @@
 <!DOCTYPE html>
 <html lang="en">
-  <head>
-    <meta charset="UTF-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>Our Dentists | Sunshine Dental Clinic</title>
-    <link rel="stylesheet" href="styles.css" />
-    <!-- Link to your CSS file -->
-  </head>
-  <body>
-    <!-- Header Section -->
-    <header>
-      <div class="container">
-        <div class="logo">Sunshine Dental Clinic</div>
-          <nav>
-            <ul>
-              <li><a href="index.html">Home</a></li>
-              <li><a href="services.html">Services</a></li>
-              <li><a href="dentists.html">Dentists</a></li>
-              <li><a href="aboutus.html">About Us</a></li>
-              <li><a href="contactus.html">Contact Us</a></li>
-              <li><a href="login.html">Login</a></li>
-            </ul>
-          </nav>
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Our Dentists | Sunshine Dental Clinic</title>
+  <link rel="stylesheet" href="styles.css">
+  <style>
+    .section-background .box-container {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(30rem, 1fr));
+      gap: 1rem;
+    }
+
+    .section-background .box-container .box {
+      padding: 2%;
+      text-align: center;
+      border: var(--border);
+    }
+
+    .section-background .box-container .box img {
+      height: 25rem;
+      border-radius: 10%;
+    }
+
+    .section-background .box-container .box h3 {
+      color: #fff;
+      font-size: 2rem;
+      padding: 1rem 0;
+    }
+
+    .section-background .box-container .box:hover {
+      background: #fff;
+    }
+
+    .section-background .box-container .box:hover > * {
+      color: var(--black);
+    }
+  </style>
+</head>
+<body>
+  <header>
+    <div class="container">
+      <div class="logo">Sunshine Dental Clinic</div>
+      <nav>
+        <ul>
+          <li><a href="index.html">Home</a></li>
+          <li><a href="services.html">Services</a></li>
+          <li><a href="dentists.html">Dentists</a></li>
+          <li><a href="aboutus.html">About Us</a></li>
+          <li><a href="contactus.html">Contact Us</a></li>
+          <li><a href="login.html">Login</a></li>
+        </ul>
+      </nav>
+    </div>
+  </header>
+
+  <main class="container">
+    <section id="in-house-dentists" class="section-background">
+      <h1 class="section-heading">Introducing Dentists</h1>
+      <div class="box-container">
+        <!-- Repeat the following box structure for each dentist -->
+        <div class="box">
+          <img src="images/doctor-1.png" alt="Dentist Image">
+          <h2>Dr. Darren Doe</h2>
+          <p>
+            Dr. Darren has 20 years of experience in Dental Implant Fixing and Impacted Tooth Extraction.
+          </p>
+          <a href="#">
+            <button class="button">Make Appointment</button>
+          </a>
+        </div>
+        
+        <div class="box">
+          <img src="images/doctor-2.png" alt="Dentist Image" />
+          <h2>Dr. Julian</h2>
+          <p>
+            Dr. Julian is a specialist in Invisalign braces, Veneers / Laminates, and Orthodontics.
+          </p>
+          <a href="#">
+            <button class="button">Make Appointment</button>
+          </a>
+        </div>
+
+        <div class="box">
+          <img src="images/doctor-3.png" alt="Dentist Image" />
+          <h2>Dr. William Homes</h2>
+          <p>
+            Dr. William is one of the specialists in Routine Exams such as Scaling & Polishing.
+          </p>
+          <a href="#">
+            <button class="button">Make Appointment</button>
+          </a>
+        </div>
+      
+        <div class="box">
+          <img src="images/doctor-4.png" alt="Dentist Image" />
+          <h2>Dr. Rachel Green</h2>
+          <p>
+            Specialized in Orthodontics. Committed to creating beautiful smiles.
+          </p>
+          <a href="#">
+            <button class="button">Make Appointment</button>
+          </a>
+        </div>
+
+        <div class="box">
+          <img src="images/steven.jpeg" alt="Dentist Image" />
+          <h2>Dr. Steven Choi</h2>
+          <p>
+            Dr. Steven is specialized in Dental Implant Fixing and Impacted Tooth Extraction.
+          </p>
+          <a href="#">
+            <button class="button">Make Appointment</button>
+          </a>
+        </div>
+
+        <div class="box">
+          <img src="images/ashley.jpg" alt="Dentist Image" />
+          <h2>Dr. Ashley Khoo</h2>
+          <p>
+            Dr. Ashley is specialized in Routine Exams such as Scaling & Polishing.
+          </p>
+          <a href="#">
+            <button class="button">Make Appointment</button>
+          </a>
+        </div>
+        
+        <div class="box">
+          <img src="images/tiffany.jpg" alt="Dentist Image" />
+          <h2>Dr. Tiffany Ko</h2>
+          <p>
+            Dr. Tiffany is specialized in Invisalign braces and Veneers / Laminates.
+          </p>
+          <a href="#">
+            <button class="button">Make Appointment</button>
+          </a>
+        </div>
+
+        <div class="box">
+          <img src="images/joseph.jpg" alt="Dentist Image" />
+          <h2>Dr. Joseph Liew</h2>
+          <p>
+            Dr. Joseph is specialized in Orthodontics and Dental Implant Fixing.
+          </p>
+          <a href="#">
+            <button class="button">Make Appointment</button>
+          </a>
+        </div>
       </div>
-    </header>
-
-    <!-- Main Content -->
-    <main class="container">
-      <section id="in-house-dentists" class="section-background">
-        <h1 class="section-heading">Introducing Dentists</h1>
-          <!-- You can replicate this section for each dentist -->
-          <article>
-            <img src="path_to_image" alt="Dentist Image" />
-            <h2>Dr. John Doe</h2>
-            <p>
-              Specialized in Orthodontics. Committed to creating beautiful smiles.
-            </p>
-          </article>
-          <!-- End of section for each dentist -->
-      </section>
-    </main>
-
-    <!-- Footer Section -->
-    <footer>
-      <div class="container">
+    </section>
+  </main>
+  
+  <!-- Footer Section -->
+  <footer>
+    <div class="container">
       <nav>
         <ul>
           <li><a href="index.html">Home</a></li>
@@ -55,6 +165,7 @@
         </ul>
       </nav>
       <p>&copy; 2023 Sunshine Dental Clinic. All rights reserved.</p>
-    </footer>
-  </body>
+    </div>
+  </footer>
+</body>
 </html>

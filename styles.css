@@ -19,6 +19,33 @@ body {
   padding: 0 20px;
 }
 
+.column {
+  width: calc(25% - 10px); /* Adjust the width to create four equal-width columns with a little spacing */
+  display: inline-block; /* Display columns in a row */
+  vertical-align: top; /* Align columns at the top */
+  margin: 2px; /* Add some spacing between columns */
+  padding: 5px; /* Add padding to create space between columns */
+  box-sizing: border-box; /* Include padding and border in the total width */
+  text-align: center; /* Center-align the content within each column */
+  flex-basis: 25%;
+  background: #f3fffd;
+  border-radius: 10px;
+  box-sizing: border-box;
+  transition: 0.5s;
+}
+
+.column:hover {
+  box-shadow: 0 0 20px 0px rgba(0, 0, 0, 0.2);
+}
+
+.article {
+  display: flex;
+  flex-wrap: wrap; /* Allow the subcategories to wrap to the next row */
+  justify-content: space-between; /* Adjust alignment as needed */
+}
+
+
+
 /* Header Styles */
 header {
   background: #5bc0eb;
