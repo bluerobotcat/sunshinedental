@@ -1,0 +1,181 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Our Dentists | Sunshine Dental Clinic</title>
+  <link rel="stylesheet" href="styles.css">
+  <style>  /* Add this CSS to make the display smaller and fit three dentists in a row */
+    .section-background .box-container {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(20rem, 1fr)); /* Adjusted minmax size */
+      gap: 1rem;
+      justify-content: center; /* Center align the boxes */
+    }
+
+    .section-background .box-container .box {
+      text-align: center;
+      border: var(--border);
+      max-width: 20rem; /* Added max-width to limit the width of each box */
+      background-color: #f9f9f9; /* Added background color */
+      transition: background-color 0.3s, color 0.3s; /* Smooth hover effect */
+      cursor: pointer;
+      padding: 1rem;
+      margin: 1rem;
+      border-radius: 10%;
+    }
+
+    .section-background .box-container .box img {
+      height: 15rem; /* Adjusted image height to make them smaller */
+      border-radius: 10%;
+    }
+
+    .section-background .box-container .box h2 {
+      color: #333; /* Darken the title color */
+      font-size: 1.5rem; /* Slightly smaller font size */
+      padding: 1rem 0;
+    }
+
+    .section-background .box-container .box p {
+      color: #666; /* Adjusted paragraph color */
+      font-size: 1rem; /* Smaller font size */
+    }
+
+    .section-background .box-container .box:hover {
+      background-color: #fff; /* Change background on hover */
+    }
+    
+  </style>
+</head>
+<body>
+  <header>
+    <div class="container">
+      <div class="logo">Sunshine Dental Clinic</div>
+      <nav>
+        <ul>
+          <li><a href="index.html">Home</a></li>
+          <li><a href="services.html">Services</a></li>
+          <li><a href="dentists.html">Dentists</a></li>
+          <li><a href="aboutus.html">About Us</a></li>
+          <li><a href="contactus.html">Contact Us</a></li>
+          <li><a href="login.html">Login</a></li>
+        </ul>
+      </nav>
+    </div>
+  </header>
+
+  <main class="container">
+    <section id="available-dentists" class="section-background">
+      <h2>Available Dentists</h2>
+   
+      <div class="box-container">
+        <!-- Repeat the following box structure for each dentist -->
+        <div class="box">
+          <img src="images/doctor-1.png" alt="Dentist Image">
+          <h2>Dr. Darren Doe</h2>
+          <p>
+            Dr. Darren has 20 years of experience in Dental Implant Fixing and Impacted Tooth Extraction.
+          </p>
+          <a href="bookslot.html"
+          ><button class="button">Book Now</button></a
+        >
+        </div>
+        
+        <div class="box">
+          <img src="images/doctor-2.png" alt="Dentist Image" />
+          <h2>Dr. Julian</h2>
+          <p>
+            Dr. Julian is a specialist in Invisalign braces, Veneers / Laminates, and Orthodontics.
+          </p>
+          <a href="bookslot.html"
+          ><button class="button">Book Now</button></a
+        >
+        </div>
+
+        <div class="box">
+          <img src="images/doctor-3.png" alt="Dentist Image" />
+          <h2>Dr. William Homes</h2>
+          <p>
+            Dr. William is one of the specialists in Routine Exams such as Scaling & Polishing.
+          </p>
+          <a href="bookslot.html"
+          ><button class="button">Book Now</button></a
+        >
+        </div>
+      
+        <div class="box">
+          <img src="images/doctor-4.png" alt="Dentist Image" />
+          <h2>Dr. Rachel Green</h2>
+          <p>
+            Specialized in Orthodontics. Committed to creating beautiful smiles.
+          </p>
+          <a href="bookslot.html"
+          ><button class="button">Book Now</button></a
+        >
+        </div>
+
+        <div class="box">
+          <img src="images/steven.jpeg" alt="Dentist Image" />
+          <h2>Dr. Steven Choi</h2>
+          <p>
+            Dr. Steven is specialized in Dental Implant Fixing and Impacted Tooth Extraction.
+          </p>
+          <a href="bookslot.html"
+          ><button class="button">Book Now</button></a
+        >
+        </div>
+
+        <div class="box">
+          <img src="images/ashley.jpg" alt="Dentist Image" />
+          <h2>Dr. Ashley Khoo</h2>
+          <p>
+            Dr. Ashley is specialized in Routine Exams such as Scaling & Polishing.
+          </p>
+          <a href="bookslot.html"
+          ><button class="button">Book Now</button></a
+        >
+        </div>
+        
+        <div class="box">
+          <img src="images/tiffany.jpg" alt="Dentist Image" />
+          <h2>Dr. Tiffany Ko</h2>
+          <p>
+            Dr. Tiffany is specialized in Invisalign braces and Veneers / Laminates.
+          </p>
+          <a href="bookslot.html"
+          ><button class="button">Book Now</button></a
+        >
+        </div>
+
+        <div class="box">
+          <img src="images/joseph.jpg" alt="Dentist Image" />
+          <h2>Dr. Joseph Liew</h2>
+          <p>
+            Dr. Joseph is specialized in Orthodontics and Dental Implant Fixing.
+          </p>
+          <a href="bookslot.html"
+          ><button class="button">Book Now</button></a
+        >
+        </div>
+      </div>
+    </section>
+  </main>
+  
+  <!-- Footer Section -->
+  <footer>
+    <div class="container">
+      <nav>
+        <ul>
+          <li><a href="index.html">Home</a></li>
+          <li><a href="services.html">Services</a></li>
+          <li><a href="dentists.html">Dentists</a></li>
+          <li><a href="aboutus.html">About Us</a></li>
+          <li><a href="contactus.html">Contact Us</a></li>
+          <li><a href="login.html">Login</a></li>
+        </ul>
+      </nav>
+      <p>&copy; 2023 Sunshine Dental Clinic. All rights reserved.</p>
+    </div>
+  </footer>
+</body>
+</html>

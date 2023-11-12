@@ -5,37 +5,46 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Our Dentists | Sunshine Dental Clinic</title>
   <link rel="stylesheet" href="styles.css">
-  <style>
+  <style>  /* Add this CSS to make the display smaller and fit three dentists in a row */
     .section-background .box-container {
       display: grid;
-      grid-template-columns: repeat(auto-fit, minmax(30rem, 1fr));
+      grid-template-columns: repeat(auto-fit, minmax(20rem, 1fr)); /* Adjusted minmax size */
       gap: 1rem;
+      justify-content: center; /* Center align the boxes */
     }
 
     .section-background .box-container .box {
-      padding: 2%;
       text-align: center;
       border: var(--border);
-    }
-
-    .section-background .box-container .box img {
-      height: 25rem;
+      max-width: 20rem; /* Added max-width to limit the width of each box */
+      background-color: #f9f9f9; /* Added background color */
+      transition: background-color 0.3s, color 0.3s; /* Smooth hover effect */
+      cursor: pointer;
+      padding: 1rem;
+      margin: 1rem;
       border-radius: 10%;
     }
 
-    .section-background .box-container .box h3 {
-      color: #fff;
-      font-size: 2rem;
+    .section-background .box-container .box img {
+      height: 15rem; /* Adjusted image height to make them smaller */
+      border-radius: 10%;
+    }
+
+    .section-background .box-container .box h2 {
+      color: #333; /* Darken the title color */
+      font-size: 1.5rem; /* Slightly smaller font size */
       padding: 1rem 0;
     }
 
-    .section-background .box-container .box:hover {
-      background: #fff;
+    .section-background .box-container .box p {
+      color: #666; /* Adjusted paragraph color */
+      font-size: 1rem; /* Smaller font size */
     }
 
-    .section-background .box-container .box:hover > * {
-      color: var(--black);
+    .section-background .box-container .box:hover {
+      background-color: #fff; /* Change background on hover */
     }
+    
   </style>
 </head>
 <body>
@@ -56,8 +65,15 @@
   </header>
 
   <main class="container">
+    <section id="introducing-dentists">
+      <h2>Introducing Dentists</h2>
+      <p>
+        Meet our team of dedicated and experienced dentists who are committed
+        to providing you with the best dental care.
+      </p>
+    </section>
+
     <section id="in-house-dentists" class="section-background">
-      <h1 class="section-heading">Introducing Dentists</h1>
       <div class="box-container">
         <!-- Repeat the following box structure for each dentist -->
         <div class="box">
@@ -66,7 +82,7 @@
           <p>
             Dr. Darren has 20 years of experience in Dental Implant Fixing and Impacted Tooth Extraction.
           </p>
-          <a href="#">
+          <a href="login.html">
             <button class="button">Make Appointment</button>
           </a>
         </div>
@@ -77,7 +93,7 @@
           <p>
             Dr. Julian is a specialist in Invisalign braces, Veneers / Laminates, and Orthodontics.
           </p>
-          <a href="#">
+          <a href="login.html">
             <button class="button">Make Appointment</button>
           </a>
         </div>
@@ -88,7 +104,7 @@
           <p>
             Dr. William is one of the specialists in Routine Exams such as Scaling & Polishing.
           </p>
-          <a href="#">
+          <a href="login.html">
             <button class="button">Make Appointment</button>
           </a>
         </div>
@@ -99,7 +115,7 @@
           <p>
             Specialized in Orthodontics. Committed to creating beautiful smiles.
           </p>
-          <a href="#">
+          <a href="login.html">
             <button class="button">Make Appointment</button>
           </a>
         </div>
@@ -110,7 +126,7 @@
           <p>
             Dr. Steven is specialized in Dental Implant Fixing and Impacted Tooth Extraction.
           </p>
-          <a href="#">
+          <a href="login.html">
             <button class="button">Make Appointment</button>
           </a>
         </div>
@@ -121,7 +137,7 @@
           <p>
             Dr. Ashley is specialized in Routine Exams such as Scaling & Polishing.
           </p>
-          <a href="#">
+          <a href="login.html">
             <button class="button">Make Appointment</button>
           </a>
         </div>
@@ -132,7 +148,7 @@
           <p>
             Dr. Tiffany is specialized in Invisalign braces and Veneers / Laminates.
           </p>
-          <a href="#">
+          <a href="login.html">
             <button class="button">Make Appointment</button>
           </a>
         </div>
@@ -143,7 +159,7 @@
           <p>
             Dr. Joseph is specialized in Orthodontics and Dental Implant Fixing.
           </p>
-          <a href="#">
+          <a href="login.html">
             <button class="button">Make Appointment</button>
           </a>
         </div>
