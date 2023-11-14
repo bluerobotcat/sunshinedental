@@ -1,3 +1,8 @@
+<?php
+echo "Reached bookingsuccess.php";
+print_r($_POST);
+?>
+
 <!DOCTYPE html>
 <html lang="en">
   <head>
@@ -16,15 +21,6 @@
         margin-bottom: 40px;
       }
 
-      .button {
-        display: inline-block;
-        padding: 10px 20px;
-        text-decoration: none;
-        border-radius: 5px;
-        background-color: #333;
-        color: #ffffff;
-        font-size: 1em;
-      }
     </style>
   </head>
   <body>
@@ -36,12 +32,11 @@
 
     <main class="container">
       <section id="booking-confirmation">
-        <h1>Booking Confirmation</h1>
+        <h1>Appointment Confirmed</h1>
         <p>
-          Thank you for using Sunshine Dental online services. Your booking is
-          confirmed!
+          Your appointment has been booked successfully!
         </p>
-        <a href="index.html" class="button">HOME</a>
+        <a href="dashboard.php" class="button">Back to Dashboard</a>
       </section>
     </main>
 

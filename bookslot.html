@@ -92,7 +92,8 @@
       </div>
 
       <section id="appointment-date">
-        <form action="submit_booking_form" method="POST">
+        <form action="submitbooking.php" method="POST">
+         <input tye="hidden" name="dentist_id" value="<?php echo htmlspecialchars ($dentistId); ?>">
           <div class="form-group">
             <h2>Appointment Date</h2>
             <label for="date">Select a date:</label>
