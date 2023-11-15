@@ -5,22 +5,13 @@ include 'connection.php';
 // Initialize error message
 $error = '';
 
-
-
-$patientID = $_SESSION['PatientID'];
-$appointmentID = isset($_GET['appointment_id']) ? intval($_GET['appointment_id']) : 0;
-echo "Debug: Appointment ID is set to: " . $appointmentID;
-
-
 // Check if the patient is logged in
 if (!isset($_SESSION['PatientID'])) {
     $error = 'Patient not logged in.';
 }
 
-// Check if the Appointment ID is provided
-if (!isset($_GET['AppointmentID'])) {
-    $error .= ' Appointment ID not provided.';
-}
+// Fetch the current appointment's details
+$appointmentID = isset($_GET['appointmentID']) ? intval($_GET['appointmentID']) : 0;
 
 // If there are any errors, stop further execution and display the error
 if ($error) {
@@ -29,20 +20,22 @@ if ($error) {
 }
 // Fetch the current appointment's details
 $stmt = $conn->prepare("SELECT * FROM appointments WHERE AppointmentID = ? AND PatientID = ?");
-$stmt->bind_param("ii", $appointmentID, $patientID);
+$stmt->bind_param("ii", $appointmentID, $_SESSION['PatientID']);
 $stmt->execute();
 $currentAppointment = $stmt->get_result()->fetch_assoc();
 $stmt->close();
 
-// Check if the Appointment ID is provided
-if (!$appointmentID) {
-    $error .= ' Appointment ID not provided.';
+// // Debug statements
+// echo "Debug: Appointment ID from URL: $appointmentID<br>";
+// echo "Debug: Patient ID from session: {$_SESSION['PatientID']}<br>";
+// echo "Debug: Fetched appointment: " . print_r($currentAppointment, true) . "<br>";
+
+// Check if the Appointment ID is valid
+if (!$currentAppointment) {
+    // Redirect or display a message
+    echo "Invalid Appointment ID or unauthorized access.";
+    exit;
 }
-
-
-// Add debug statements
-echo "PatientID: " . $_SESSION['PatientID'] . "<br>";
-echo "Appointment ID: " . $_GET['AppointmentID'] . "<br>";
 
 // Fetch available time slots for the same dentist
 $stmt = $conn->prepare("SELECT * FROM timeslots WHERE DentistID = ? AND IsBooked = 0 AND SlotDateTime > NOW()");
@@ -51,10 +44,13 @@ $stmt->execute();
 $availableSlots = $stmt->get_result()->fetch_all(MYSQLI_ASSOC);
 $stmt->close();
 
-// Add a debug statement
-echo "Available Slots: ";
-print_r($availableSlots);
+// // Add debug statements
+// echo "Debug: Dentist ID: {$currentAppointment['DentistID']}<br>";
+// echo "Debug: Current Date and Time: " . date("Y-m-d H:i:s") . "<br>";
 
+// // Add a debug statement to check the query result
+// echo "Debug: Available Slots: ";
+// print_r($availableSlots);
 
 // Handle form submission for rescheduling
 if ($_SERVER['REQUEST_METHOD'] == 'POST' && isset($_POST['new_slot'])) {
@@ -167,17 +163,17 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST' && isset($_POST['new_slot'])) {
             <?php if (isset($error)): ?>
                 <p class="error"><?php echo $error; ?></p>
             <?php endif; ?>
-            <form method="post" action="reschedule_appointment.php">
-                <label for="new_slot">Choose a new time slot:</label>
-                <select name="new_slot" id="new_slot">
-                    <?php foreach ($availableSlots as $slot): ?>
-                        <option value="<?php echo $slot['SlotID']; ?>">
-                            <?php echo (new DateTime($slot['SlotDateTime']))->format('d M Y, H:i'); ?>
-                        </option>
-                    <?php endforeach; ?>
-                </select>
-                <button type="submit">Reschedule</button>
-            </form>
+            <form method="post" action="appointment_confirmation.php">
+    <label for="new_slot">Choose a new time slot:</label>
+    <select name="new_slot" id="new_slot">
+        <?php foreach ($availableSlots as $slot): ?>
+            <option value="<?php echo $slot['SlotID']; ?>">
+                <?php echo date('d M Y, H:i', strtotime($slot['SlotDateTime'])); ?>
+            </option>
+        <?php endforeach; ?>
+    </select>
+    <button type="submit">Reschedule</button>
+</form>
         </section>
     </main>
 
