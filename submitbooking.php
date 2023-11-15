@@ -1,106 +1,87 @@
 <?php
+// Enable error reporting
+error_reporting(E_ALL);
+ini_set('display_errors', 1);
+
+// Debugging session start
+echo "Before session_start<br>";
+
 session_start();
+
+// Debugging session start
+echo "After session_start<br>";
 
 include 'connection.php'; // Adjust to the path of your database connection file
 
-// Function to validate the date and time slot
-function validateDate($date, $timeslotId, $conn) {
-    $now = new DateTime();
-    $selectedDate = DateTime::createFromFormat('Y-m-d', $date);
+if ($_SERVER['REQUEST_METHOD'] == 'POST' && isset($_POST['dentist_id'], $_POST['service'], $_POST['timeslot'])) {
+    $dentistId = intval($_POST['dentist_id']);
+    $serviceId = intval($_POST['service']);
+    $timeslotId = intval($_POST['timeslot']);
+    $patientId = $_SESSION['PatientID']; // Ensure that 'PatientID' is set in the session
 
-    // Debugging statement: Print the current date and selected date
-    echo "Current Date: " . $now->format('Y-m-d') . "<br>";
-    echo "Selected Date: " . $selectedDate->format('Y-m-d') . "<br>";
+    // Debugging session variables
+    echo "PatientID: " . $_SESSION['PatientID'] . "<br>";
 
-    if ($selectedDate < $now) {
-        // Debugging statement
-        echo "Selected date is before the current date.<br>";
-        return false;
+    if (!isset($_SESSION['PatientID']) || empty($_SESSION['PatientID'])) {
+        echo "PatientID is not set or empty<br>";
+    } else {
+        echo "PatientID is set and not empty<br>";
     }
 
-    // Validate if the slotDateTime corresponds to the selected date
-    $stmt = $conn->prepare("SELECT SlotDateTime FROM timeslots WHERE SlotID = ?");
-    $stmt->bind_param("i", $timeslotId);
-    $stmt->execute();
-    $result = $stmt->get_result();
-    $slotInfo = $result->fetch_assoc();
-    $stmt->close();
-
-    if (!$slotInfo) {
-        // Debugging statement
-        echo "Slot information not found.<br>";
-        return false;
-    }
-
-    $slotDateTime = new DateTime($slotInfo['SlotDateTime']);
-
-    // Debugging statement: Print the slot date and time
-    echo "Slot Date and Time: " . $slotDateTime->format('Y-m-d H:i:s') . "<br>";
-
-    if ($slotDateTime->format('Y-m-d') != $date) {
-        // Debugging statement
-        echo "Slot date does not match the selected date.<br>";
-        return false;
-    }
-
-    return true;
-}
-
-// Check if the form was submitted
-if ($_SERVER['REQUEST_METHOD'] == 'POST' && isset($_POST['dentist_id'], $_POST['service'], $_POST['timeslot'], $_POST['date'])) {
-    $dentistId = $_POST['dentist_id'];
-    $serviceId = $_POST['service'];
-    $timeslotId = $_POST['timeslot'];
-    $selectedDate = $_POST['date'];
-
-    // Begin transaction
+    // Start transaction
     $conn->begin_transaction();
 
     try {
-        // Validate the date
-        if (!validateDate($selectedDate, $timeslotId, $conn)) {
-            throw new Exception("Invalid date for appointment or timeslot does not match the selected date.");
-        }
-
         // Mark the timeslot as booked
-        $updateStmt = $conn->prepare("UPDATE timeslots SET IsBooked = 1 WHERE SlotID = ?");
-        $updateStmt->bind_param("i", $timeslotId);
-        $updateStmt->execute();
-        if ($updateStmt->affected_rows == 0) {
-            throw new Exception("Error updating time slot.");
+        $stmt = $conn->prepare("UPDATE timeslots SET IsBooked = 1 WHERE SlotID = ? AND DentistID = ? AND IsBooked = 0");
+        $stmt->bind_param("ii", $timeslotId, $dentistId);
+        $stmt->execute();
+        if ($stmt->affected_rows == 0) {
+            throw new Exception("Time slot is already booked or does not exist.");
         }
-        $updateStmt->close();
+        $stmt->close();
 
         // Insert the booking into the Appointments table
-        $insertStmt = $conn->prepare("INSERT INTO appointments (PatientID, DentistID, ServiceID, SlotID, Status) VALUES (?, ?, ?, ?, 'scheduled')");
-        $insertStmt->bind_param("iiii", $_SESSION['patient_id'], $dentistId, $serviceId, $timeslotId); // Assuming the patient ID is stored in session
-        $insertStmt->execute();
-        if ($insertStmt->affected_rows == 0) {
-            throw new Exception("Error booking appointment.");
+        $stmt = $conn->prepare("INSERT INTO appointments (PatientID, ServiceID, Status, SlotID) VALUES (?, ?, 'scheduled', ?)");
+        $stmt->bind_param("iii", $patientId, $serviceId, $timeslotId);
+        $stmt->execute();
+        if ($stmt->affected_rows == 0) {
+            throw new Exception("Failed to create an appointment.");
         }
-        $insertStmt->close();
+        $stmt->close();
 
         // Commit transaction
         $conn->commit();
 
-        // Booking successful
+        // Debugging success message
+        echo "Booking success. Redirecting...<br>";
+
         $_SESSION['booking_success'] = "Appointment booked successfully!";
-        header("Location: bookingsuccess.php"); // Adjust the redirect location to your success page
+        header("Location: bookingsuccess.php");
         exit;
     } catch (Exception $e) {
-        // An error occurred, roll back the transaction
+        // Log the entire exception to a file
+        error_log('Exception: ' . $e->getMessage() . "\n" . $e->getTraceAsString(), 3, 'error.log');
+
+        // Debugging error message
+        echo "Error: " . $e->getMessage() . "<br>";
+
         $conn->rollback();
-        $_SESSION['booking_error'] = $e->getMessage();
-        // header("Location: error.php"); // Adjust the redirect location to your error page
+        $_SESSION['booking_error'] = "An unexpected error occurred. Please try again later.";
+        // Debugging error message
+        echo "Redirecting to bookingerror.php...<br>";
+        header("Location: bookingerror.php");
         exit;
     } finally {
-        // Close the database connection
+        // Debugging connection close
+        echo "Closing connection...<br>";
         $conn->close();
     }
 } else {
-    // Invalid form submission
-    $_SESSION['booking_error'] = "Invalid form submission.";
-    // header("Location: error.php");
+    $_SESSION['booking_error'] = "Invalid request.";
+    // Debugging error message
+    echo "Invalid request. Redirecting to bookingerror.php...<br>";
+    header("Location: bookingerror.php");
     exit;
 }
 ?>

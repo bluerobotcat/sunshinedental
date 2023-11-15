@@ -2,6 +2,29 @@
 session_start(); // Start a new session or resume the existing one
 include 'connection.php';
 
+if (empty($_POST["first-name"])) {
+    die("First Name is required");
+}
+
+if (empty($_POST["last-name"])) {
+    die("Last Name is required");
+}
+
+if ( ! filter_var($_POST["email"], FILTER_VALIDATE_EMAIL)) {
+    die("Valid email is required");
+}
+
+if (strlen($_POST["password"]) < 5) {
+    die("Password must be at least 5 characters");
+}
+
+if ( ! preg_match("/[a-z]/i", $_POST["password"])) {
+    die("Password must contain at least one letter");
+}
+
+if ( ! preg_match("/[0-9]/", $_POST["password"])) {
+    die("Password must contain at least one number");
+}
 
 if ($_SERVER["REQUEST_METHOD"] == "POST") {
     // Include your database connection script
@@ -21,7 +44,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
     if ($stmt->execute()) {
         echo "Registration successful!";
         // Redirect to the login page or wherever you want
-        header("Location: login.php");
+        header("Location: signupsuccess.html");
         exit;
     } else {
         echo "Error: " . $stmt->error;

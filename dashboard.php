@@ -23,7 +23,26 @@ $email = $_SESSION['Email'];
 $password = $_SESSION['Password']; 
 
 // Fetch appointments if logged in
-$patientAppointments = getPatientAppointments($_SESSION['PatientID'], $conn);
+$query = "SELECT Appointments.*, TimeSlots.SlotDateTime 
+          FROM Appointments
+          JOIN TimeSlots ON Appointments.SlotID = TimeSlots.SlotID
+          WHERE Appointments.PatientID = ?";
+
+$stmt = $conn->prepare($query);
+$stmt->bind_param("i", $_SESSION['PatientID']);
+$stmt->execute();
+$result = $stmt->get_result();
+$stmt->close();
+
+$patientAppointments = array();
+
+while ($appointment = $result->fetch_assoc()) {
+    $slotDateTime = new DateTime($appointment['SlotDateTime']);
+    $appointment['AppointmentDate'] = $slotDateTime->format('Y-m-d');
+    $appointment['AppointmentTime'] = $slotDateTime->format('H:i:s');
+    $patientAppointments[] = $appointment;
+}
+
 
 // When the user clicks 'Sign Out', destroy the session and redirect to the homepage or login page
 if (isset($_GET['action']) && $_GET['action'] == 'signout') {
@@ -119,19 +138,31 @@ if (isset($_GET['action']) && $_GET['action'] == 'signout') {
     </section>
       <section id="your-appointment">
     <h2>Your Appointments</h2>
-  <?php if (count($patientAppointments) > 0): ?>
+    <?php if (count($patientAppointments) > 0): ?>
     <ul>
-      <?php foreach ($patientAppointments as $appointment): ?>
-          <p>Appointment ID: <?php echo htmlspecialchars($appointment["AppointmentID"]); ?></p>
-          <p>Date: <?php echo htmlspecialchars($appointment["AppointmentDate"]); ?></p>
-          <p>Time: <?php echo htmlspecialchars($appointment["AppointmentTime"]); ?></p>
-          <p>Status: <?php echo htmlspecialchars($appointment["Status"]); ?></p>
-          <!-- Add more appointment details you want to display -->
-      <?php endforeach; ?>
+        <?php foreach ($patientAppointments as $appointment): ?>
+            <div>
+                <p>Appointment ID: <?php echo htmlspecialchars($appointment["AppointmentID"]); ?></p>
+                <p>Date: <?php echo htmlspecialchars($appointment["AppointmentDate"]); ?></p>
+                <p>Time: <?php echo htmlspecialchars($appointment["AppointmentTime"]); ?></p>
+                <p>Status: <?php echo htmlspecialchars($appointment["Status"]); ?></p>
+                <!-- Add more appointment details you want to display -->
+                
+                <!-- Reschedule/Cancel buttons with PatientID -->
+                <a href="reschedule.php?appointmentID=<?php echo $appointment['AppointmentID']; ?>&patientID=<?php echo $patientID; ?>">
+                    <button class="button">RESCHEDULE</button>
+                </a>
+                
+                <a href="cancel.php?appointmentID=<?php echo $appointment['AppointmentID']; ?>&patientID=<?php echo $patientID; ?>">
+                    <button class="button">CANCEL</button>
+                </a>
+                <div><br /></div>
+            </div>
+        <?php endforeach; ?>
     </ul>
-  <?php else: ?>
+<?php else: ?>
     <p>You have no appointments scheduled.</p>
-  <?php endif; ?>
+<?php endif; ?>
     </section>
 
       <section id="booking">
@@ -143,7 +174,7 @@ if (isset($_GET['action']) && $_GET['action'] == 'signout') {
 
       <section id="appointment">
         <h2>Want to change your appointment?</h2>
-        <a href="reschedule.html">
+        <a href="appointmentdetails.php">
           <button class="button">RESCHEDULE / CANCEL</button>
         </a>
       </section>

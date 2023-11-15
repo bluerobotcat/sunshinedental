@@ -12,7 +12,7 @@ include 'connection.php'; // Adjust to the path of your database connection file
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>Booking Confirmation | Sunshine Dental Clinic</title>
+    <title>Booking Cancellation | Sunshine Dental Clinic</title>
     <link rel="stylesheet" href="styles.css" />
     <style>
       #booking-confirmation h1 {
@@ -36,9 +36,9 @@ include 'connection.php'; // Adjust to the path of your database connection file
 
     <main class="container">
       <section id="booking-confirmation">
-        <h1>Appointment Confirmed</h1>
+        <h1>Appointment Cancelled</h1>
         <p>
-          Your appointment has been booked successfully!
+          Your appointment has been cancelled successfully!
         </p>
         <a href="dashboard.php" class="button">Back to Dashboard</a>
       </section>

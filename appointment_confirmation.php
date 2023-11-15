@@ -1,10 +1,18 @@
 <?php
-// echo "Reached bookingsuccess.php";
-// print_r($_POST);
-
 session_start();
 
-include 'connection.php'; // Adjust to the path of your database connection file
+// Check if the success message is set in the session, otherwise redirect to the dashboard or home page
+if (!isset($_SESSION['reschedule_success_message'])) {
+    // Redirect to the dashboard or home page
+    // header("Location: dashboard.php");
+    // exit;
+}
+
+// Retrieve the success message if set, otherwise set a default message
+$rescheduleSuccessMessage = isset($_SESSION['reschedule_success_message']) ? $_SESSION['reschedule_success_message'] : 'Appointment rescheduled successfully.';
+
+// Clear the success message from the session
+unset($_SESSION['reschedule_success_message']);
 ?>
 
 <!DOCTYPE html>
@@ -12,15 +20,15 @@ include 'connection.php'; // Adjust to the path of your database connection file
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>Booking Confirmation | Sunshine Dental Clinic</title>
+    <title>Reschedule Confirmation | Sunshine Dental Clinic</title>
     <link rel="stylesheet" href="styles.css" />
     <style>
-      #booking-confirmation h1 {
+      #reschedule-confirmation h1 {
         font-size: 2.5em;
         margin-bottom: 20px;
       }
 
-      #booking-confirmation p {
+      #reschedule-confirmation p {
         font-size: 1.2em;
         margin-bottom: 40px;
       }
@@ -35,10 +43,10 @@ include 'connection.php'; // Adjust to the path of your database connection file
     </header>
 
     <main class="container">
-      <section id="booking-confirmation">
-        <h1>Appointment Confirmed</h1>
+      <section id="reschedule-confirmation">
+        <h1>Appointment Rescheduled</h1>
         <p>
-          Your appointment has been booked successfully!
+          <?php echo htmlspecialchars($rescheduleSuccessMessage); ?>
         </p>
         <a href="dashboard.php" class="button">Back to Dashboard</a>
       </section>

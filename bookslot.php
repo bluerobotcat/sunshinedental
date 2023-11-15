@@ -5,10 +5,10 @@ session_start();
 // Include your database connection file
 include 'connection.php';
 
-// Initialize variables
+$dentistId = isset($_GET['dentist_id']) ? intval($_GET['dentist_id']) : null;
 $availableTimeSlots = [];
 $dentistInfo = null;
-$dentistId = null;
+$offeredServices = [];
 
 // Check if the dentist_id is set in the URL and sanitize it
 if (isset($_GET['dentist_id'])) {
@@ -203,16 +203,18 @@ $conn->close();
         <?php if (!empty($availableTimeSlots)): ?>
             <form action="submitbooking.php" method="POST">
                 <input type="hidden" name="dentist_id" value="<?php echo htmlspecialchars($dentistId); ?>">
+       
+
                 <label for="service">Choose a service:</label>
                 <select name="service" id="service" required>
-                    <?php foreach ($offeredServices as $service): ?>
-                        <option value="<?php echo $service['ServiceID']; ?>">
-                            <?php echo htmlspecialchars($service['ServiceName']); ?>
-                        </option>
-                    <?php endforeach; ?>
-                    
-                </select>
-                <div><br /><div>
+                  <?php foreach ($offeredServices as $service): ?>
+                    <option value="<?php echo $service['ServiceID']; ?>">
+                       <?php echo htmlspecialchars($service['ServiceName']); ?> - <?php echo htmlspecialchars($servicesDescriptions[$service['ServiceID']]['Description']); ?>
+                    </option>
+                 <?php endforeach; ?>
+              </select>
+
+                <div><br /></div>
                 <label for="timeslot">Choose a time slot:</label>
                 <select name="timeslot" id="timeslot" required>
                     <?php foreach ($availableTimeSlots as $slot): ?>
@@ -221,7 +223,7 @@ $conn->close();
                         </option>
                     <?php endforeach; ?>
                 </select>
-                <div><br /><div>
+                <div><br /></div>
                 <button type="submit" class="button">Book Now</button>
             </form>
         <?php else: ?>

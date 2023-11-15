@@ -1,0 +1,91 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Patient Dashboard | Sunshine Dental Clinic</title>
+    <link rel="stylesheet" href="styles.css" />
+    <style>
+      /* Reset some default styles */
+      body, h1, h2, p, ul, li {
+        margin: 5;
+        padding: 5;
+      }
+
+      /* Layout */
+.container {
+  max-width: 1200px;
+  margin: auto;
+  padding: 0 20px;
+}
+
+
+      #welcome, 
+      #login {
+        text-align: center;
+        padding: 20px;
+        margin: 20px 0;
+        border-radius: 8px;
+      }
+
+      
+      #welcome{
+        background-color: rgba(240, 223, 200, 0.7); /* Cooler and lighter pastel orange */
+      }
+
+      #login{
+        background-color: rgba(244, 198, 198, 0.7); /* Cooler and lighter pastel peach */
+      }
+
+      .button {
+        width: 200px; /* Fixed width for all buttons */
+      }
+
+      /* Adding some spacing and styling to the sections */
+      section {
+        margin-bottom: 30px;
+        padding: 20px;
+        border-radius: 8px;
+      }
+
+      
+    </style>
+  </head>
+
+  <header>
+      <div class="container">
+        <div class="logo">Sunshine Dental Clinic</div>
+      </div>
+    </header>
+    <body>
+
+    <main class="container">
+    <section id="welcome">
+    <h1>Welcome</h1>
+    <p>
+        You are now successfully registered!
+    </p>
+    </section>
+
+    <section id="login">
+      <form action="login.html" method="post">
+          <button type="submit" class="button">Click here to Login</button>
+      </form>
+    </section>
+    </body>
+  </main>
+    
+    <footer>
+      <nav>
+        <ul>
+          <li><a href="index.html">Home</a></li>
+          <li><a href="services.html">Services</a></li>
+          <li><a href="aboutus.html">About Us</a></li>
+          <li><a href="contactus.html">Contact Us</a></li>
+          <li><a href="login.html">Dentist Login</a></li>
+        </ul>
+      </nav>
+      <p>&copy; 2023 Sunshine Dental Clinic. All rights reserved.</p>
+    </footer>
+
+</html>

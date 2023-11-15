@@ -1,18 +1,9 @@
-<?php
-// echo "Reached bookingsuccess.php";
-// print_r($_POST);
-
-session_start();
-
-include 'connection.php'; // Adjust to the path of your database connection file
-?>
-
 <!DOCTYPE html>
 <html lang="en">
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>Booking Confirmation | Sunshine Dental Clinic</title>
+    <title>Booking Cancellation | Sunshine Dental Clinic</title>
     <link rel="stylesheet" href="styles.css" />
     <style>
       #booking-confirmation h1 {
@@ -25,6 +16,9 @@ include 'connection.php'; // Adjust to the path of your database connection file
         margin-bottom: 40px;
       }
 
+      .button {
+        /* Your button styling */
+      }
     </style>
   </head>
   <body>
@@ -36,9 +30,14 @@ include 'connection.php'; // Adjust to the path of your database connection file
 
     <main class="container">
       <section id="booking-confirmation">
-        <h1>Appointment Confirmed</h1>
+        <h1>Appointment Status</h1>
         <p>
-          Your appointment has been booked successfully!
+          <?php
+          // Display the status message from the session
+          echo $_SESSION['booking_status_message'];
+          // Clear the status message from the session
+          unset($_SESSION['booking_status_message']);
+          ?>
         </p>
         <a href="dashboard.php" class="button">Back to Dashboard</a>
       </section>

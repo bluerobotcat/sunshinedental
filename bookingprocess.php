@@ -13,7 +13,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
     // Validate the inputs here
 
     // Insert the booking into the database
-    $stmt = $conn->prepare("INSERT INTO Appointments (DentistID, AppointmentDate, AppointmentTime, Status) VALUES (?, ?, ?, 'pending')");
+    $stmt = $conn->prepare("INSERT INTO appointments (DentistID, AppointmentDate, AppointmentTime, Status) VALUES (?, ?, ?, 'pending')");
     $stmt->bind_param("iss", $dentistId, $date, $time);
     $stmt->execute();
 

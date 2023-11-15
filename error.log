@@ -1,0 +1,19 @@
+Exception: Duplicate entry '0' for key 'PRIMARY'
+#0 C:\xampp\htdocs\IE4717\sunshinedental\submitbooking.php(36): mysqli_stmt->execute()
+#1 {main}Exception: Duplicate entry '0' for key 'PRIMARY'
+#0 C:\xampp\htdocs\IE4717\sunshinedental\submitbooking.php(40): mysqli_stmt->execute()
+#1 {main}Exception: Duplicate entry '0' for key 'PRIMARY'
+#0 C:\xampp\htdocs\IE4717\sunshinedental\submitbooking.php(40): mysqli_stmt->execute()
+#1 {main}Exception: Duplicate entry '0' for key 'PRIMARY'
+#0 C:\xampp\htdocs\IE4717\sunshinedental\submitbooking.php(40): mysqli_stmt->execute()
+#1 {main}Exception: Duplicate entry '0' for key 'PRIMARY'
+#0 C:\xampp\htdocs\IE4717\sunshinedental\submitbooking.php(40): mysqli_stmt->execute()
+#1 {main}Exception: Duplicate entry '0' for key 'PRIMARY'
+#0 C:\xampp\htdocs\IE4717\sunshinedental\submitbooking.php(49): mysqli_stmt->execute()
+#1 {main}Exception: Duplicate entry '0' for key 'PRIMARY'
+#0 C:\xampp\htdocs\IE4717\sunshinedental\submitbooking.php(46): mysqli_stmt->execute()
+#1 {main}Exception: Duplicate entry '0' for key 'PRIMARY'
+#0 C:\xampp\htdocs\IE4717\sunshinedental\submitbooking.php(47): mysqli_stmt->execute()
+#1 {main}Exception: Duplicate entry '0' for key 'PRIMARY'
+#0 C:\xampp\htdocs\IE4717\sunshinedental\submitbooking.php(47): mysqli_stmt->execute()
+#1 {main}
